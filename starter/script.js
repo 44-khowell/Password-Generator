@@ -117,7 +117,7 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener('click', writePassword);
 
-
+/*
 // ******* My Script *************
 
 function userInput(element) {
@@ -173,6 +173,78 @@ let errorCode = false;
   }
 }
 
+*/
+
+// Function for getting a random element from an array
+function getRandom1(arr) {
+
+}
+
+// Array 
+var lowerSubCasedCharacters = [
+  'a',
+  'b',
+  'c',
+  'd',
+  'e',
+  'f',
+  'g',
+  'h',
+  'i',
+  'j',
+  'k'
+];
+
+
+
+
+// ******** Random number generator *********
+function getRandomIntVal(max) {
+  return Math.floor(Math.random()*max);
+}
+
+// ******** Random Generator for Arrays 
+function randomArray(arr) {
+  // Initialise local variables 
+  let srambledArray = [];
+  let randomVal = 0;
+  
+  // Determine array length & loop thro it 
+  for (let i = 0; i < (arr.length); i++) {
+    // Generate random no based on incoming array length 
+    randomVal = getRandomIntVal(arr.length);
+    // Select a value from current array, then push to new array
+    srambledArray.push(arr[randomVal]);
+    //Return srambled array
+  }return srambledArray;
+}
+
+// Check output from function
+console.log(randomArray(lowerSubCasedCharacters));
+
+
+
+
+
+/* ======== skelton code - origin =============
+
+// let output =  Math.floor(Math.random()*11);
+// console.log('Gen output is: ', output);
+
+// --------------------------------------------
+
+let srambledLowerCaseChars = [];
+let randomVal = 0;
+
+for (let i = 0; i < lowerSubCasedCharacters.length; i++) {
+  randomVal = getRandomIntVal(lowerSubCasedCharacters.length);
+
+  srambledLowerCaseChars.push(lowerCasedCharacters[randomVal]);
+}
+
+console.log(srambledLowerCaseChars);
+
+ ======== skelton - end ======== */
 
 
 
