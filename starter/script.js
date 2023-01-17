@@ -203,7 +203,7 @@ function getRandomIntVal(max) {
   return Math.floor(Math.random()*max);
 }
 
-// ******** Random Generator for Arrays 
+// ******** Random Generator for Arrays (based on size of incoming array) **********
 function randomArray(arr) {
   // Initialise local variables 
   let srambledArray = [];
