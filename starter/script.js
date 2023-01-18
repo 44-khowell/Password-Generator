@@ -1,3 +1,4 @@
+
 // Array of special characters to be included in password
 var specialCharacters = [
   '@',
@@ -120,7 +121,7 @@ generateBtn.addEventListener('click', writePassword);
 /*
 // ******* My Script *************
 
-function userInput(element) {
+function userInput() {
 
 let errorCode = false;
 
@@ -196,9 +197,7 @@ var lowerSubCasedCharacters = [
 ];
 
 
-
-
-// ******** Random number generator *********
+// ******** Random number generator f*********
 function getRandomIntVal(max) {
   return Math.floor(Math.random()*max);
 }
@@ -219,8 +218,190 @@ function randomArray(arr) {
   }return srambledArray;
 }
 
-// Check output from function
-console.log(randomArray(lowerSubCasedCharacters));
+// Test Code - Check output from function with Sample Array
+//console.log(randomArray(lowerSubCasedCharacters));
+
+
+/*
+// Testing of user input responses (alfa)
+function userInput() {
+  let feedbk = false;
+  let answers = [];
+  let regExp = /\s/g; //White space check 
+  let regExpNonWhite = /\S/g; // Non White space check
+  let regExpDigit = /\d/g; // Digits check
+  let regExpNonDigit = /\D/g; // Non Digit chars check
+
+
+  let lowercase = prompt("Do you want to include Lowercase items in Password? \nEnter: Yes or No");
+  console.log('User input answer here is: ',lowercase);
+
+  // De-code user input 
+  let result2 = regExpNonWhite.test(lowercase);
+  console.log('result2 is: ',result2);
+
+  // Check for null I/P
+  if ((lowercase === null)) {
+    console.log('User i/p invalid, please try again');
+    
+  // Check for valid Yes I/P
+  } else if ((lowercase.toLowerCase() === 'yes') || (lowercase.toLowerCase() === 'y') && (lowercase !== '') && (lowercase !== null)) {
+    console.log('User i/p  "yes" case is checked: ',lowercase.toLowerCase());
+    answers.push(lowercase);
+    console.log('The result is: ',answers);
+
+  // Check for valid NO I/P
+  } else if ((lowercase.toLowerCase() === 'no') || (lowercase.toLowerCase() === 'n') && (lowercase !== '') && (lowercase !== null)) {
+    console.log('User i/p  "no" case is checked: ',lowercase);
+
+  // Check for Non-White spaces, single Digits & Chars I/P
+  } else if ((regExpNonWhite.test(lowercase) == true) || (regExpDigit.test(lowercase) == true) || (regExpNonDigit.test(lowercase) == true)) { 
+    console.log('User i/p "nosense" is checked: ',lowercase);
+
+  // Check for White spaces I/P
+  } else if ((lowercase.toLowerCase() !== 'yes') || (lowercase.toLowerCase() !== 'y') && (regExp.test(lowercase) == false) && (lowercase !== null)) {
+    console.log('User i/p " " is checked: ',lowercase);
+  } else {
+      console.log('User i/p invalid');
+  }
+}
+*/
+
+
+// ******* Validate User input function (beta) ******
+
+function validateInput(ans){
+  // Declare variables
+  let answers = [];
+  let regExp = /\s/g; //White space check 
+  let regExpNonWhite = /\S/g; // Non White space check
+  let regExpDigit = /\d/g; // Digits check
+  let regExpNonDigit = /\D/g; // Non Digit chars check
+
+  // De-code user input 
+  let result2 = regExpNonWhite.test(ans);
+  console.log('result2 is: ',result2);
+
+  // Check for null I/P
+  if ((ans === null)) {
+  console.log('User i/p invalid, please try again');
+  
+  // Check for valid Yes I/P
+  } else if ((ans.toLowerCase() === 'yes') || (ans.toLowerCase() === 'y') && (ans !== '') && (ans !== null)) {
+  console.log('User i/p  "yes" case is checked: ',ans);
+  answers.push(ans);
+  console.log('The result is: ',answers);
+
+// Check for valid NO I/P
+  } else if ((ans.toLowerCase() === 'no') || (ans.toLowerCase() === 'n') && (ans !== '') && (ans !== null)) {
+    console.log('User i/p  "no" case is checked: ',ans);
+    answers.push(ans);
+
+  // Check for Non-White spaces, single Digits & Chars I/P
+  } else if ((regExpNonWhite.test(ans) == true) || (regExpDigit.test(ans) == true) || (regExpNonDigit.test(ans) == true)) { 
+    console.log('User i/p "nosense" is checked: ',ans);
+    
+  // Check for White spaces I/P
+  } else if ((ans.toLowerCase() !== 'yes') || (ans.toLowerCase() !== 'y') && (regExp.test(ans) == false) && (ans !== null)) {
+    console.log('User i/p " " is checked: ',ans);
+  } else {
+      // Default response
+      console.log('User i/p invalid');
+  } return answers;
+} 
+
+
+// ******** Collect user reponse to questions from prompt (beta) *******
+
+function userInput() {
+  let feedbk = false;
+  let charTypes = [];
+//  let answers = [];
+//  let regExp = /\s/g; //White space check 
+//  let regExpNonWhite = /\S/g; // Non White space check
+//  let regExpDigit = /\d/g; // Digits check
+//  let regExpNonDigit = /\D/g; // Non Digit chars check
+
+do {
+
+  let lowercase = prompt("Do you want to include Lowercase items in Password? \nEnter: Yes or No");
+  console.log('User input answer here is: ',lowercase);
+
+  // Validate response
+  let response = validateInput(lowercase);
+  console.log('Response from user: ', response);
+
+  // Save responses in Array 
+  charTypes.push(response);
+  console.log('Saved Response from user: ', response);
+  feedbk = false;
+  
+  let uppercase = prompt("Do you want to include Uppercase items in Password? \nEnter: Yes or No");
+
+  // Validate response
+  response = validateInput(uppercase);
+  console.log('Response from user: ', response);
+
+  // Save responses in Array 
+  charTypes.push(response);
+  console.log('Saved Response from user: ', charTypes);
+  feedbk = false;
+
+  let numeric = prompt("Do you want to include Numeric items in Password? \nEnter: Yes or No");
+
+  // Validate response
+  response = validateInput(numeric);
+  console.log('Response from user: ', charTypes);
+
+  // Save responses in Array 
+  charTypes.push(response);
+  console.log('Saved Response from user: ', charTypes);
+  feedbk = false;
+
+  let specialChars = prompt("Do you want to include Special Characters in Password? \nEnter: Yes or No");
+
+  // Validate response
+  response = validateInput(specialChars);
+  console.log('Response from user: ', charTypes);
+
+  // Save responses in Array 
+  charTypes.push(response);
+  console.log('Saved Response from user: ', charTypes);
+  feedbk = false;
+
+  } while (feedbk);
+  return charTypes;
+} 
+
+
+/*
+
+  do {
+   let lowercase = prompt("Do you want to include Lowercase items in Password? Enter: Yes or No");
+    console.log('User input answer here is: ',lowercase);
+    if ((lowercase.toLowerCase() == 'yes') || (lowercase.toLowerCase() == 'y') && (lowercase !== 'null')) {
+      console.log('User input answer after is: ',lowercase);
+  
+      answers.push(lowercase);
+     feedbk = true;
+    }
+  } while (feedbk);
+
+  
+
+  let uppercase = prompt("Do you want to include Uppercase items in Password? Enter: Yes or No");
+
+  let numeric = prompt("Do you want to include Numeric items in Password? Enter: Yes or No");
+  
+  let specialChars = prompt("Do you want to include Special Characters in Password? Enter: Yes or No");
+  
+  console.log('Response from lowercase: ', answers);
+
+  return //result; 
+}
+
+*/
+
 
 
 
