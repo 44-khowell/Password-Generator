@@ -1,3 +1,25 @@
+/*
+Presudocode - Password Generator
+
+ - Prompt for user to input for Password length between 8 to 128 characters 
+   - Confirm and validate what the user input.
+   - Store length in a variable 
+   - Prompt for user to input for Character Types - Uppercase, Lowercase, Numeric, Special Chars
+   - Store user Character Types answers in variables via confirm prompts 
+   - Test answers for Yes / No responses
+   - For each Yes response, fetch the appropriate array 
+       - Using the random number generator and password length 
+       - Create a new array of chosen Char Type with PW length 
+   - Merge ALL new arrays of selected Char Types
+	     - Concat each of the arrays  
+   	   - To a new array containing ALL the different selected Char Types 
+   - Pass the new array to a random number generator 
+   - To generate a value from the random number generator
+   - Use the number generated to select a random value from the selected Char types
+   - Create an array containing the final password 
+   - Convert the array into a string for displaying in the page menu
+*/
+
 
 // Array of special characters to be included in password
 var specialCharacters = [
@@ -152,14 +174,9 @@ var finalArrayChoices = [];
 
 // Validate user input responses 
 var userLength = userInput();
-  console.log("This is the length in the generated pw: ", userLength);
-
+ 
   // Call this function to retive user user selections
   getPasswordOptions()
-  console.log('The user choose uppercase for the length ', upperCaseConfirm);
-  console.log('The user choose lowercase for the length ', lowerCaseConfirm);
-  console.log('The user choose Numeric for the length ', numericConfirm);
-  console.log('The user choose SpecialChar for the length ', specialCharConfirm);
 
   // Check user input responses requests for options presented
   if (upperCaseConfirm == true) {
@@ -177,9 +194,6 @@ var userLength = userInput();
   if (specialCharConfirm == true) {
     finalArrayChoices = finalArrayChoices.concat(specialCharacters);
   }
-
-  // check overall array 
-  console.log(finalArrayChoices);
 
   // Assemble user password from user's choice preferences 
   var finalPW = passwordAssy(userLength, finalArrayChoices);
@@ -215,11 +229,10 @@ let errorCode = false;
 
   // User PW length prompt
   promptUserLength = prompt('Enter a password length between the range: 8 to 128 characters');
-  console.log('this is user input at start ',promptUserLength);
 
   do {
     // ******** Now test for invalid user input *********
-
+    
     // Try to convert userInput to Int   
     testNum = Number.isInteger(parseInt(promptUserLength));
 
@@ -227,12 +240,8 @@ let errorCode = false;
     if (testNum !== true) {
       let promptCheck1 = prompt("Entry not recoginsed as a number. \nPlease try again");
       if ( (Number.isInteger(parseInt(promptCheck1)) !== true) || ((promptCheck1 < 8) || (promptCheck1 > 128)) ) {
-        errorCode = true;
-        console.log('Code in promptCheck1 - failed');
       } else {
         errorCode = false;
-        console.log('Code in promptCheck1 - passed');
-        console.log('returned value is:', promptCheck1);
         return promptCheck1;
       }
 
@@ -241,24 +250,16 @@ let errorCode = false;
       let promptCheck2 = prompt('Value entered is outside the valid password length. \nPlease try again');
       if ( (Number.isInteger(parseInt(promptCheck2)) !== true) || ((promptCheck2 < 8) || (promptCheck2 > 128)) ) {
         errorCode = true;
-        console.log('Code in promptCheck2 - failed');
       } else {
         errorCode = false;
-        console.log('Code in promptCheck2 - passed');
-        console.log('returned value is:', promptCheck2);
         return promptCheck2;
       }
-
     } else {
        // Return value of users initial correct attempt
-        console.log('Code in 2nd re-try: state of error code:', errorCode);
-        console.log('returned value is:', promptUserLength);
-        return promptUserLength;
+      return promptUserLength;
     }
-
   } while (errorCode) {
       // Exit while loop - with result of validation checks
-      console.log('exit of while loop, errorcode:', errorCode);    
   }
 }
 // ======= User Input Validation - End =======
