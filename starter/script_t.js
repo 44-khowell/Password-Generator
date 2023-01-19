@@ -162,6 +162,29 @@ function randomArray(arr) {
 //console.log(randomArray(lowerSubCasedCharacters));
 
 
+/*
+  let finalPW = 0;
+  let srambledPW = [];
+
+  for (let n = 0; n < (promptUserLength); n++) {
+      
+    var randomNum = getRandom(finalArrayChoices);
+    srambledPW.push(finalArrayChoices[randomNum]);
+    //console.log('password array: ', srambledPW);
+    finalPW += srambledPW[n];
+
+  }
+  console.log('Scrambled final password is: ', finalPW);
+*/
+//  var randomNum = getRandom(finalArrayChoices);
+//  console.log('math_random is: ', randomNum);
+
+//var finalPW = finalArrayChoices[Math.floor(Math.random()*finalArrayChoices.length)];
+//console.log('Scrambled final password is: ', finalPW);
+//console.log('pw length is: ',promptUserLength);
+//console.log('length value is: ',length);
+// "This is the final password"
+// finalPW
 
 
 /*

@@ -89,7 +89,7 @@ var upperCasedCharacters = [
   'Z'
 ];
 
-// Declare Global variables to check user input 
+// Declared Global variables to check user input 
 var upperCaseConfirm;
 var lowerCaseConfirm;
 var numeric;
@@ -104,18 +104,42 @@ function getPasswordOptions() {
   numericConfirm = confirm('Would you like Numeric for your password?');
   specialCharConfirm = confirm('Would you like Special Characters for your password?');
 }
+// ======= getPasswordOptions - End ========
+
 
 // Function for getting a random element from an array
 function getRandom(arr) {
-
+  // Local variables
   let newArray = [];
   let newNum = 0;
+
+  // Generate a random number based on the size of incoming array
   for (k = 0; k < arr.length; k++) {
     newNum = Math.floor(Math.random() * arr.length);
-   // console.log('Math cal number is: ',newNum);
   }
   return newNum;
 }
+// ======= getRandom - End ========
+
+// Function for assembling password using ramdom number generator
+function passwordAssy(lengthChoice, arr) {
+// Local variables
+  let finalPW = 0;
+  let srambledPW = [];
+  
+  // Cycle thro incoming array using chosen PW length
+  for (let n = 0; n < (lengthChoice); n++) {
+    // Generate a random number   
+    var randomNum = getRandom(arr);
+    // Select a random item from incoming array and populate a new array 
+    srambledPW.push(arr[randomNum]);
+    
+    // Create a string containing new password
+    finalPW += srambledPW[n]; 
+  } 
+  return finalPW;
+}
+// ======= passwordAssy - End ========
 
 
 // =============================================================
@@ -126,7 +150,7 @@ function generatePassword() {
 // Declare Array for user selected options
 var finalArrayChoices = [];
 
-
+// Validate user input responses 
 var userLength = userInput();
   console.log("This is the length in the generated pw: ", userLength);
 
@@ -157,31 +181,13 @@ var userLength = userInput();
   // check overall array 
   console.log(finalArrayChoices);
 
-  let finalPW = 0;
-  let srambledPW = [];
+  // Assemble user password from user's choice preferences 
+  var finalPW = passwordAssy(userLength, finalArrayChoices);
 
-  for (let n = 0; n < (promptUserLength); n++) {
-      
-    var randomNum = getRandom(finalArrayChoices);
-    srambledPW.push(finalArrayChoices[randomNum]);
-    //console.log('password array: ', srambledPW);
-    finalPW += srambledPW[n];
-
-  }
-  console.log('Scrambled final password is: ', finalPW);
-
-//  var randomNum = getRandom(finalArrayChoices);
-//  console.log('math_random is: ', randomNum);
-
-//var finalPW = finalArrayChoices[Math.floor(Math.random()*finalArrayChoices.length)];
-//console.log('Scrambled final password is: ', finalPW);
-//console.log('pw length is: ',promptUserLength);
-//console.log('length value is: ',length);
-// "This is the final password"
-
-return finalPW;
-
+  return finalPW;
 }
+// ======= generatePassword - End ========
+
 
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
@@ -198,10 +204,6 @@ function writePassword() {
 generateBtn.addEventListener('click', writePassword);
 
 
-
-
-
-// ******* My Script *************
 //=================================================
 // ************ User Input Validation *************
 //=================================================
