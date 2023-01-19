@@ -73,6 +73,9 @@ Screenshot of Password Generated using the above Prompt Inputs:
 ![password generator demo](./assets/Password-Result.png)
 
 
+## Page Link
+https://44-khowell.github.io/Password-Generator/
+
 ## Credits
 
 Tutorials: 
